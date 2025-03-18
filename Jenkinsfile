@@ -3,8 +3,9 @@ pipeline {
     
     stages {
         stage('Checkout Code') {
-            steps {
-                git url: 'https://github.com/your-username/your-repo.git', branch: 'main'
+            git branch: 'main',
+                    credentialsId: 'github-token',
+                    url: 'https://github.com/Hemanthvarma1086263/devops-project.git'
             }
         }
         stage('Build') {
