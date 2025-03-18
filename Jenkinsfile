@@ -3,7 +3,8 @@ pipeline {
     
     stages {
         stage('Checkout Code') {
-            git branch: 'main',
+            steps {
+                git branch: 'main',
                     credentialsId: 'github-token',
                     url: 'https://github.com/Hemanthvarma1086263/devops-project.git'
             }
@@ -30,4 +31,3 @@ pipeline {
             }
         }
     }
-}
