@@ -1,4 +1,4 @@
-pipeline {
+pipeline { 
     agent any  // Run on any available Jenkins node
     
     stages {
@@ -11,23 +11,23 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean package'  // Build the project using Maven
+                bat 'mvn clean package'  // Build the project using Maven (Windows compatible)
             }
         }
         stage('Docker Build & Push') {
             steps {
-                sh '''
+                bat '''
                     docker build -t your-docker-image .
                     docker tag your-docker-image your-dockerhub-username/your-docker-image:latest
                     docker push your-dockerhub-username/your-docker-image:latest
-                '''
+                '''  // Docker commands (Windows compatible)
             }
         }
         stage('Deploy to EC2') {
             steps {
-                sh '''
+                bat '''
                     docker run -d -p 8080:8080 your-dockerhub-username/your-docker-image:latest
-                '''
+                '''  // Run the docker container (Windows compatible)
             }
         }
     }
